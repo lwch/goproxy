@@ -1,6 +1,7 @@
 package index
 
 import (
+	"bytes"
 	"io"
 	"time"
 
@@ -27,4 +28,23 @@ func (idx *Indexer) Save(name string, r io.Reader) error {
 		e := badger.NewEntry([]byte(name), data)
 		return txn.SetEntry(e)
 	})
+}
+
+func (idx *Indexer) Get(name string) (io.ReadCloser, error) {
+	var data []byte
+	err := idx.db.View(func(txn *badger.Txn) error {
+		item, err := txn.Get([]byte(name))
+		if err != nil {
+			return err
+		}
+		return item.Value(func(val []byte) error {
+			data = make([]byte, len(val))
+			copy(data, val)
+			return nil
+		})
+	})
+	if err != nil {
+		return nil, err
+	}
+	return io.NopCloser(bytes.NewReader(data)), nil
 }

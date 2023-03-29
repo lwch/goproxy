@@ -23,3 +23,7 @@ func New(indexer *index.Indexer) *Base {
 func (b *Base) Save(name string, content io.ReadSeeker) error {
 	return b.indexer.Save(name, content)
 }
+
+func (b *Base) Get(_ context.Context, name string) (io.ReadCloser, error) {
+	return b.indexer.Get(name)
+}

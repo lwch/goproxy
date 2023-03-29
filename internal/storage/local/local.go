@@ -28,6 +28,9 @@ func New(indexer *index.Indexer, dir string, timeout time.Duration) storage.Stor
 
 func (l *Local) Get(ctx context.Context, name string) (io.ReadCloser, error) {
 	logging.Info("GET: %s", name)
+	if strings.HasSuffix(name, "/@v/list") {
+		return l.Base.Get(ctx, strings.TrimSuffix(name, "/@v/list"))
+	}
 	return nil, os.ErrNotExist
 }
 
