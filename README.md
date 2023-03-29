@@ -12,22 +12,10 @@ $ docker run -d -p 8080:8080 lwch/goproxy
 
 docker-compose方式启动：
 
-```yaml
-version: "3"
+首先将[docker-compose.yml](docker-compose.yml)保存到本地，然后使用以下命令进行启动
 
-services:
-  goproxy:
-    restart: always
-    image: lwch/goproxy
-    ports:
-      - 8080:8080
-    volumes:
-      - type: volume
-        source: goproxy-data
-        target: /tmp
-
-volumes:
-  goproxy-data:
+```shell
+$ docker-compose up -d
 ```
 
 ## 使用
