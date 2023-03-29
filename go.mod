@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	github.com/goproxy/goproxy v0.13.0
+	github.com/lwch/logging v1.0.1
 	github.com/lwch/runtime v1.0.0
 )
 

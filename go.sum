@@ -2,6 +2,8 @@ github.com/dustin/go-humanize v1.0.0 h1:VSnTsYCnlFHaM2/igO1h6X3HA71jcobQuxemgkq4
 github.com/dustin/go-humanize v1.0.0/go.mod h1:HtrtbFcZ19U5GC7JDqmcUSB87Iq5E25KnS6fMYU6eOk=
 github.com/goproxy/goproxy v0.13.0 h1:bpEXwI04lKpn/rxIbNWd6SA1fuDVKPCSWcuMbxX1lTU=
 github.com/goproxy/goproxy v0.13.0/go.mod h1:NY5JQtVDSCZNJUijc1ep5SqoUs55hGzuqe8WLnbPCSw=
+github.com/lwch/logging v1.0.1 h1:5v3XR5jaad/yuJsaC7OY8BfhHGHLT/pscc3iAVQTaKk=
+github.com/lwch/logging v1.0.1/go.mod h1:hiA9neZf+38gqBOAselhBL3NRz00+dr8d6vrHh8BJ88=
 github.com/lwch/runtime v1.0.0 h1:siMQ16oBQ7Kx+M0KnUrAhRe0j8I493zfIqmII0r2wRc=
 github.com/lwch/runtime v1.0.0/go.mod h1:D9d6Uzg9Nea3M+bkNyLHNk6Nhlz/j1c4mze1gG0tReI=
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
