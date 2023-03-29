@@ -2,6 +2,7 @@ package local
 
 import (
 	"context"
+	"encoding/hex"
 	"goproxy/internal/index"
 	"goproxy/internal/storage"
 	"io"
@@ -39,6 +40,11 @@ func (l *Local) Set(ctx context.Context, name string, content io.ReadSeeker) err
 	if strings.HasSuffix(name, "/@v/list") {
 		return l.Base.Save(strings.TrimSuffix(name, "/@v/list"), content)
 	}
+	data, err := io.ReadAll(content)
+	if err != nil {
+		return err
+	}
+	logging.Info("%s", hex.Dump(data))
 	return nil
 }
 
