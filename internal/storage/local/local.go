@@ -30,7 +30,8 @@ func New(indexer *index.Indexer, dir string, timeout time.Duration) storage.Stor
 func (l *Local) Get(ctx context.Context, name string) (io.ReadCloser, error) {
 	logging.Info("GET: %s", name)
 	if strings.HasSuffix(name, "/@v/list") ||
-		strings.HasSuffix(name, "/@latest") {
+		strings.HasSuffix(name, "/@latest") ||
+		strings.HasSuffix(name, ".mod") {
 		return l.Base.Get(ctx, name)
 	}
 	return nil, os.ErrNotExist
@@ -39,7 +40,8 @@ func (l *Local) Get(ctx context.Context, name string) (io.ReadCloser, error) {
 func (l *Local) Set(ctx context.Context, name string, content io.ReadSeeker) error {
 	logging.Info("SET: %s", name)
 	if strings.HasSuffix(name, "/@v/list") ||
-		strings.HasSuffix(name, "/@latest") {
+		strings.HasSuffix(name, "/@latest") ||
+		strings.HasSuffix(name, ".mod") {
 		return l.Base.Save(name, content)
 	}
 	data, err := io.ReadAll(content)
