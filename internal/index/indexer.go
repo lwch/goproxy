@@ -3,6 +3,7 @@ package index
 import (
 	"bytes"
 	"io"
+	"os"
 	"time"
 
 	"github.com/dgraph-io/badger/v4"
@@ -35,6 +36,9 @@ func (idx *Indexer) Get(name string) (io.ReadCloser, error) {
 	err := idx.db.View(func(txn *badger.Txn) error {
 		item, err := txn.Get([]byte(name))
 		if err != nil {
+			if err == badger.ErrKeyNotFound {
+				return os.ErrNotExist
+			}
 			return err
 		}
 		return item.Value(func(val []byte) error {
