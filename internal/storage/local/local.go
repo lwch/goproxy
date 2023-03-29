@@ -1,7 +1,6 @@
 package local
 
 import (
-	"bufio"
 	"context"
 	"goproxy/internal/index"
 	"goproxy/internal/storage"
@@ -14,13 +13,14 @@ import (
 )
 
 type Local struct {
-	indexer *index.Indexer
+	*storage.Base
 	dir     string
 	timeout time.Duration
 }
 
 func New(indexer *index.Indexer, dir string, timeout time.Duration) storage.Storage {
 	return &Local{
+		Base:    storage.New(indexer),
 		dir:     dir,
 		timeout: timeout,
 	}
@@ -34,10 +34,7 @@ func (l *Local) Get(ctx context.Context, name string) (io.ReadCloser, error) {
 func (l *Local) Set(ctx context.Context, name string, content io.ReadSeeker) error {
 	logging.Info("SET: %s", name)
 	if strings.HasSuffix(name, "/@v/list") {
-		s := bufio.NewScanner(content)
-		for s.Scan() {
-			logging.Info(s.Text())
-		}
+		return l.Base.Save(strings.TrimSuffix(name, "/@v/list"), content)
 	}
 	return nil
 }

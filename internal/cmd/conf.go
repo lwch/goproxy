@@ -39,7 +39,7 @@ func loadConf(dir string) *Configure {
 
 	idx, err := badger.Open(badger.DefaultOptions(cfg.Cache.Index))
 	runtime.Assert(err)
-	indexer := index.New(idx)
+	indexer := index.New(idx, cfg.Cache.Timeout)
 
 	var storage storage.Storage
 	switch cfg.Cache.Storage {
