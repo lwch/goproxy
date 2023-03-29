@@ -1,0 +1,12 @@
+listen: 8080        # listen port
+go: /usr/bin/go     # go command dir
+cache:              # cache save storage
+  index: /tmp/index # index save dir
+  timeout: 24h      # cache expire timeout
+  storage: local    # local, s3, ...
+  local: # configure for local storage
+    dir: /tmp/data
+  # s3: # configure for s3 storage
+  #   endpoint: <endpoint>
+  #   akey: <access key>
+  #   skey: <secret key>
