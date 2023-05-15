@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/dgraph-io/badger/v4 v4.1.0
-	github.com/goproxy/goproxy v0.13.0
+	github.com/goproxy/goproxy v0.14.0
 	github.com/lwch/logging v1.0.1
 	github.com/lwch/runtime v1.0.0
 	gopkg.in/yaml.v3 v3.0.1
