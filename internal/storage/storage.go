@@ -8,7 +8,7 @@ import (
 
 type Storage interface {
 	Get(ctx context.Context, name string) (io.ReadCloser, error)
-	Set(ctx context.Context, name string, content io.ReadSeeker) error
+	Put(ctx context.Context, name string, content io.ReadSeeker) error
 	Clear()
 }
 

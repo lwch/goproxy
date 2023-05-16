@@ -51,7 +51,7 @@ func (l *Local) Get(ctx context.Context, name string) (io.ReadCloser, error) {
 	return l.Base.Get(ctx, name)
 }
 
-func (l *Local) Set(ctx context.Context, name string, content io.ReadSeeker) error {
+func (l *Local) Put(ctx context.Context, name string, content io.ReadSeeker) error {
 	logging.Info("SET: %s", name)
 	if strings.HasSuffix(name, ".zip") {
 		tmp := strings.SplitN(name, "/@v/", 2)
