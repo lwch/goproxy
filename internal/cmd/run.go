@@ -30,8 +30,10 @@ func Run() {
 	go clearStorage(cfg.Storage)
 
 	proxy := &goproxy.Goproxy{
-		GoBinName:     cfg.GoDir,
-		ProxiedSUMDBs: []string{"sum.golang.org", "sum.golang.google.cn"},
+		Fetcher: &goproxy.GoFetcher{
+			GoBin: cfg.GoDir,
+		},
+		ProxiedSumDBs: []string{"sum.golang.org", "sum.golang.google.cn"},
 		Cacher:        cfg.Storage,
 	}
 	logging.Info("goproxy listen on %d", cfg.Listen)
